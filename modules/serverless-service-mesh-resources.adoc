@@ -113,6 +113,7 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: hello
+  namespace: istio-system <1>
 spec:
   host: custom-ksvc-domain.example.com
   port:
@@ -122,15 +123,14 @@ spec:
     name: istio-ingressgateway
 ----
 
+<1> The {product-title} route must be created in the same namespace as the 
+ServiceMeshControlPlane. In this example, the ServiceMeshControlPlane is 
+deployed in the `istio-system` namespace.
+
 .. Apply the YAML file:
 +
 
 [source,terminal]
 ----
-$ oc apply -n istio-system -f <filename>
+$ oc apply -f <filename>
 ----
-
-[IMPORTANT]
-====
-The {product-title} route must be created in the same namespace as the ServiceMeshControlPlane. In this example, the ServiceMeshControlPlane is deployed in the `istio-system` namespace.
-====
