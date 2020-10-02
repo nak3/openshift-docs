@@ -54,13 +54,14 @@ spec:
   - default-gateway
   http:
   - rewrite:
-      authority: hello.default.svc
+      authority: hello.default.svc <1>
     route:
     - destination:
-        host: hello.default.svc
+        host: hello.default.svc <1>
         port:
           number: 80
 ----
+<1> Your Knative service in the format `<service_name>.<namespace>.svc`.
 
 .. Apply the YAML file:
 +
@@ -82,7 +83,7 @@ metadata:
   name: hello.default.svc
 spec:
   hosts:
-  - hello.default.svc
+  - hello.default.svc <1>
   location: MESH_EXTERNAL
   endpoints:
   - address: kourier-internal.knative-serving-ingress.svc
@@ -92,6 +93,7 @@ spec:
     protocol: HTTP
   resolution: DNS
 ----
+<1> Your Knative service in the format `<service_name>.<namespace>.svc`.
 
 .. Apply the YAML file:
 +
@@ -127,3 +129,8 @@ spec:
 ----
 $ oc apply -n istio-system -f <filename>
 ----
+
+[IMPORTANT]
+====
+{product-title} route must be created in the same namespace with your ServiceMeshControlPlane. In this example, ServiceMeshControlPlane is deployed in `istio-system` namespace.
+====
