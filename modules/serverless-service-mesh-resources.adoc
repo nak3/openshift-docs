@@ -132,5 +132,5 @@ $ oc apply -n istio-system -f <filename>
 
 [IMPORTANT]
 ====
-{product-title} route must be created in the same namespace with your ServiceMeshControlPlane. In this example, ServiceMeshControlPlane is deployed in `istio-system` namespace.
+The {product-title} route must be created in the same namespace as the ServiceMeshControlPlane. In this example, the ServiceMeshControlPlane is deployed in the `istio-system` namespace.
 ====
